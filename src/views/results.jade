@@ -3,4 +3,12 @@ html
 	head
 	body
 	h2 matching user
-		p= user
+	p
+		p= user[0].firstname + ' ' + user[0].lastname
+		p= user[0].email
+
+	a(href='/') Home
+	br
+	a(href='/addnew') Add New
+	br
+	a(href='/form') Search

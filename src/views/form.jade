@@ -2,9 +2,15 @@ doctype html
 html
 	head
 	body
-		form(name='search-name', method='post')
+		form(name='search-name', method='post', action='/results')
 			div.input
 				span.label Name
 				input(type='text', name='name')
 			div.actions
 				input(type='submit', value='search')
+		p
+			a(href='/') Home
+			br
+			a(href='/addnew') Add New
+			br
+			a(href='/form') Search

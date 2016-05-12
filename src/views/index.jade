@@ -5,3 +5,10 @@ html
 	h2 users
 	each person in users
 		p= person.firstname + ' ' + person.lastname + ', ' + person.email
+
+	p
+		a(href='/') Home
+		br
+		a(href='/addnew') Add New
+		br
+		a(href='/form') Search
