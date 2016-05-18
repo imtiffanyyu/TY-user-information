@@ -4,7 +4,8 @@ $ ( document ).ready ( function ( ) {
 	$('#name').keyup( function ( ) {
 		var searchName = $ ( this ) .val ()
 		var ajaxdata = {
-			name: searchName
+			name: searchName,
+			ajax: true
 		}
 		console.log (ajaxdata)
 
@@ -15,10 +16,11 @@ $ ( document ).ready ( function ( ) {
 					var empty = $('#results').empty();
 
 					for (var person in data) {
-						$ (empty).append('<li>'+ data[person].firstname + ' ' + data[person].lastname + ', ' + data[person].email)
+						$ (empty).append('<option>'+ data[person].firstname + ' ' + '<option>' + data[person].lastname)
 					}
 					console.log(data)
 				})
 		}
+
 	})
 })
