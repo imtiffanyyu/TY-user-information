@@ -1,11 +1,14 @@
 doctype html
 html
 	head
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js")
+		script(src="custom.js")
 	body
 		form(name='search-name', method='post', action='/results')
 			div.input
 				span.label Name
-				input(type='text', name='name')
+				input#name(type='text', name='name', list='results')
+				datalist(id='results')
 			div.actions
 				input(type='submit', value='search')
 		p

@@ -4,6 +4,7 @@ var fs = require ('fs');
 
 var app = express();
 
+app.use( express.static('./resources/'))
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -34,27 +35,32 @@ app.post ('/results', function (request, response) {
 
 	fs.readFile('./resources/users.json', function (error, data) {
 		var matchingUser = [];
+		var ajax = request.body.ajax;
+		var userSearch = request.body.name;
 		if (error) {
-			console.log (error);
+			res.send ("User not found.");
 		}
 
-		var parsedData = JSON.parse(data);
-		
-		for ( var i = 0; i < parsedData.length; i++ ) {
-			if ( request.body.name == parsedData[i].firstname || request.body.name == parsedData[i].lastname ) {
-				matchingUser.push(parsedData[i]);
+		else {
+			var parsedData = JSON.parse(data);
+			for ( var i = 0; i < parsedData.length; i++ ) {
+				var fullName = parsedData[i].firstname + " " + parsedData[i].lastname
+				userSearch = userSearch.toUpperCase()
+				if ( parsedData[i].firstname.toUpperCase().indexOf(userSearch) > -1 || fullName.toUpperCase().indexOf(userSearch) > -1 ) {
+					matchingUser.push(parsedData[i]);
+				}
 			}
-			
+					
 		}
-		
-		console.log (matchingUser);
-		
-		if (matchingUser.length !== 0) {
+
+		if (!ajax) {
 			response.render ('results', {user: matchingUser});
 		}
 		else {
-			response.send ("Not found");
+			response.send (matchingUser);
 		}
+			
+	
 	});
 
 });
@@ -91,6 +97,12 @@ app.post ('/addnew', function (request, response) {
 var server = app.listen(3000, function() {
 	console.log('Example app listening on port: ' + server.address().port);
 });
+
+// PLAN
+// 1. create a branch
+// 2. connect search bar to ajax
+// 3. create custom.js for ajax
+
 
 
 
