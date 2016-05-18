@@ -35,27 +35,33 @@ app.post ('/results', function (request, response) {
 
 	fs.readFile('./resources/users.json', function (error, data) {
 		var matchingUser = [];
+		var userSearch = request.body.name;
 		if (error) {
-			console.log (error);
+			res.send ("User not found.");
 		}
 
-		var parsedData = JSON.parse(data);
-		
-		for ( var i = 0; i < parsedData.length; i++ ) {
-			if ( request.body.name == parsedData[i].firstname || request.body.name == parsedData[i].lastname ) {
-				matchingUser.push(parsedData[i]);
-			}
-			
-		}
-		
-		console.log (matchingUser);
-		
-		if (matchingUser.length !== 0) {
-			response.render ('results', {user: matchingUser});
-		}
 		else {
-			response.send ("Not found");
+			var parsedData = JSON.parse(data);
+			for ( var i = 0; i < parsedData.length; i++ ) {
+				userSearch = userSearch.toUpperCase()
+				if ( parsedData[i].firstname.toUpperCase().indexOf(userSearch) > -1 || parsedData[i].lastname.toUpperCase().indexOf(userSearch) > -1 ) {
+					matchingUser.push(parsedData[i]);
+				}
+			}
+			response.send (matchingUser);
 		}
+		
+		// if (matchingUser.length !== 0) {
+		// 	// if (!ajax) {
+		// 		// response.render ('results', {user: matchingUser});
+		// 	// }
+		// 	// else {
+				
+		// 	// }
+		// }
+		// else {
+		// 	response.send ("Not found");
+		// }
 	});
 
 });
