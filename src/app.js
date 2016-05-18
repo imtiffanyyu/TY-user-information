@@ -4,6 +4,7 @@ var fs = require ('fs');
 
 var app = express();
 
+app.use( express.static('./resources/'))
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -91,6 +92,12 @@ app.post ('/addnew', function (request, response) {
 var server = app.listen(3000, function() {
 	console.log('Example app listening on port: ' + server.address().port);
 });
+
+// PLAN
+// 1. create a branch
+// 2. connect search bar to ajax
+// 3. create custom.js for ajax
+
 
 
 
