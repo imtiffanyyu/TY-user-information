@@ -10,7 +10,7 @@ Once the user submits the search bar, it should exhibit the same behavior as the
 
 Hints:
 
-use https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf (Links to an external site.)
+use https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
 you cannot send or render a response more than once per request.
 you must find a way to capture whenever the user's input changes in the search bar. This will trigger your Ajax request to your server.
 
@@ -24,5 +24,5 @@ Do this work in a git branch called "bandwidth-optimization". Then, merge this b
 
 Hints:
 
-Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now (Links to an external site.) (Links to an external site.)
+Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now 
 Test it by opening the Network tab in Chrome's Developer Tools by checking that fewer requests are going off.
