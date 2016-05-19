@@ -1,38 +1,19 @@
 $ ( document ).ready ( function ( ) {
 	console.log ("DOM is ready")
 	
+	var flag = true
+
 	$('#name').keyup( function ( ) {
 		var searchName = $ ( this ) .val ()
 		var ajaxdata = {
 			name: searchName,
 			ajax: true
 		}
-		console.log (ajaxdata)
+		//console.log (ajaxdata)
 
+		if(flag) {
+			flag = false
 
-// //
-// // Throttle calls to "callback" routine and ensure that it
-// // is not invoked any more often than "delay" milliseconds.
-// //
-// function throttle(delay, callback) {
-//     var previousCall = new Date().getTime();
-//     return function() {
-//         var time = new Date().getTime();
-
-//         //
-//         // if "delay" milliseconds have expired since
-//         // the previous call then propagate this call to
-//         // "callback"
-//         //
-//         if ((time - previousCall) >= delay) {
-//             previousCall = time;
-//             callback.apply(null, arguments);
-//         }
-//     };
-// }
-
-
-		// $(window).scroll(throttle(30, function() {
 			if (ajaxdata.name) {
 					$.post('/results', ajaxdata, function ( data ) {
 						
@@ -44,7 +25,11 @@ $ ( document ).ready ( function ( ) {
 						console.log(data)
 					})
 			}
-		// }));
 
+		}
+		setTimeout (function () {
+			flag = true
+			console.log("made flag true")
+		}, 300)
 	})
 })
